@@ -1,9 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 
-namespace Colle.Models
+namespace Colle.Models;
+
+public class PasteContext : DbContext
 {
-    public class PasteContext : DbContext
-    {
-        public PasteContext(DbContextOptions<PasteContext> options) : base(options) {}
-    }
+    public PasteContext(DbContextOptions<PasteContext> options) : base(options) {}
 }
