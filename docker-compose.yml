@@ -1,9 +1,20 @@
 version: "3.9"
 services:
-  web:
+  db:
+    image: postgres
+    ports:
+      - 5432:5432
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    restart: always
+    environment:
+      POSTGRES_HOST_AUTH_METHOD: trust
+  colle:
     build: .
     ports:
-      - "5000:5000"
+      - 5000:5000
     volumes:
       - .:/app
     command: "dotnet watch"
+volumes:
+  db_data:
