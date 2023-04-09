@@ -14,6 +14,6 @@ public class PasteController : ControllerBase
 {
     public ActionResult<Paste> Get()
     {
-        return new OkObjectResult(new Paste {});
+        return new OkObjectResult(new Paste { });
     }
 }
