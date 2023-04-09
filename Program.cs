@@ -6,7 +6,11 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddControllers();
-builder.Services.AddDbContext<PasteContext>(options => options.UseNpgsql("Host=localhost; Database=colle; Username=postgres").UseSnakeCaseNamingConvention());
+builder.Services
+    .AddDbContext<PasteContext>(options =>
+    {
+        options.UseNpgsql(builder.Configuration.GetSection("ConnectionStrings").GetValue<string>("colle")).UseSnakeCaseNamingConvention();
+    });
 
 var app = builder.Build();
 
