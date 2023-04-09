@@ -33,17 +33,12 @@ public class PasteController : ControllerBase
     [HttpPost]
     public async Task<ActionResult<Paste>> Create([Bind("Contents")] Paste paste)
     {
-        if (ModelState.IsValid)
-        {
-            using var hasher = MD5.Create();
-            await _context.AddAsync(paste);
-            paste.Checksum = Convert.ToHexString(hasher.ComputeHash(System.Text.Encoding.UTF8.GetBytes(paste.Contents)));
-            await _context.SaveChangesAsync();
-            return paste;
-        }
-        else
-        {
-            return BadRequest();
-        }
+        using var hasher = MD5.Create();
+        paste.Checksum = Convert.ToHexString(hasher.ComputeHash(System.Text.Encoding.UTF8.GetBytes(paste.Contents)));
+        var existing = await _context.Pastes.Where(other => other.Checksum == paste.Checksum).FirstOrDefaultAsync();
+        if (existing is not null) return new OkObjectResult(existing);
+        await _context.AddAsync(paste);
+        await _context.SaveChangesAsync();
+        return new CreatedResult(nameof(Create), paste);
     }
 }
