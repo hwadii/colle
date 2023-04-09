@@ -19,7 +19,7 @@ public class PasteController : ControllerBase
     [HttpGet]
     public async Task<ActionResult<List<Paste>>> Index()
     {
-        return await _context.Pastes.ToListAsync();
+        return await _context.Pastes.OrderBy(paste => paste.Id).ToListAsync();
     }
 
     [HttpGet("{id}")]
