@@ -5,9 +5,13 @@ services:
     ports:
       - 5432:5432
     volumes:
+      - ./scripts/setup:/docker-entrypoint-initdb.d/setup.sh
       - db_data:/var/lib/postgresql/data
     restart: always
     environment:
+      COLLE_DB_USERNAME: ${COLLE_DB_USERNAME}
+      COLLE_DB_NAME: ${COLLE_DB_NAME}
+      COLLE_DB_PASSWORD: ${COLLE_DB_PASSWORD}
       POSTGRES_HOST_AUTH_METHOD: trust
   colle:
     build: .
