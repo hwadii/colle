@@ -5,7 +5,7 @@ services:
     ports:
       - 5432:5432
     volumes:
-      - ./scripts/setup:/docker-entrypoint-initdb.d/setup.sh
+      - ./script/setup:/docker-entrypoint-initdb.d/setup.sh
       - db_data:/var/lib/postgresql/data
     restart: always
     environment:
