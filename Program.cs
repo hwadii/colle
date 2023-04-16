@@ -11,6 +11,7 @@ builder.Services
     {
         options.UseNpgsql(builder.Configuration.GetSection("ConnectionStrings").GetValue<string>("colle")).UseSnakeCaseNamingConvention();
     });
+builder.Services.AddMvc();
 
 var app = builder.Build();
 
