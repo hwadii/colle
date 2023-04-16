@@ -11,7 +11,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace colle.Migrations
 {
-    [DbContext(typeof(PasteContext))]
+    [DbContext(typeof(ColleContext))]
     [Migration("20230409145723_CreatePastes")]
     partial class CreatePastes
     {

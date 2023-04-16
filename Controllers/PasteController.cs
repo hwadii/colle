@@ -9,9 +9,9 @@ namespace Colle.Controllers;
 [ApiController]
 public class PasteController : ControllerBase
 {
-    private readonly PasteContext _context;
+    private readonly ColleContext _context;
 
-    public PasteController(PasteContext context)
+    public PasteController(ColleContext context)
     {
         _context = context;
     }

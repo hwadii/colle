@@ -7,7 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 builder.Services
-    .AddDbContext<PasteContext>(options =>
+    .AddDbContext<ColleContext>(options =>
     {
         options.UseNpgsql(builder.Configuration.GetSection("ConnectionStrings").GetValue<string>("colle")).UseSnakeCaseNamingConvention();
     });
